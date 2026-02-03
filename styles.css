@@ -376,6 +376,15 @@ select {
   flex-wrap: wrap;
 }
 
+.discord-link {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.discord-link:hover {
+  color: var(--accent-dark);
+}
+
 .footer {
   padding: 18px 8vw 32px;
   color: var(--muted);

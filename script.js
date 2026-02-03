@@ -60,7 +60,7 @@
     name: "Soporte prioritario",
     price: 6,
     category: "extras",
-    description: "Atencion prioritaria por chat.",
+    description: "Atencion prioritaria.",
     badge: "Plus"
   }
 ];
@@ -237,7 +237,7 @@ const newsletterForm = document.getElementById("newsletterForm");
 newsletterForm.addEventListener("submit", (event) => {
   event.preventDefault();
   newsletterForm.reset();
-  alert("Gracias. Te avisamos por email.");
+  alert("Gracias. Te avisamos.");
 });
 
 document.getElementById("randomPick").addEventListener("click", () => {
@@ -248,8 +248,4 @@ document.getElementById("randomPick").addEventListener("click", () => {
 
 document.getElementById("checkoutBtn").addEventListener("click", () => {
   alert("Checkout demo: aqui conectariamos con el pago real.");
-});
-
-document.getElementById("viewCollection").addEventListener("click", () => {
-  alert("Planes activos: combos con descuento ya disponibles.");
 });
