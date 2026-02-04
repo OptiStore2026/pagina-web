@@ -288,75 +288,6 @@ a {
   border: 1px solid rgba(0, 208, 168, 0.5);
 }
 
-.featured {
-  padding: 10px 8vw 24px;
-}
-
-.featured-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.featured-head h2 {
-  font-family: "Cormorant Garamond", serif;
-  margin: 0 0 6px;
-  font-size: 2rem;
-}
-
-.featured-head p {
-  color: var(--muted);
-  margin: 0;
-}
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.featured-card {
-  background: linear-gradient(160deg, rgba(27, 35, 56, 0.9), rgba(17, 24, 38, 0.95));
-  border-radius: 18px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  display: grid;
-  gap: 10px;
-  box-shadow: 0 10px 26px rgba(6, 9, 16, 0.35);
-}
-
-.featured-card h3 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.featured-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.featured-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  color: var(--accent-2);
-}
-
-.featured-card button {
-  background: var(--accent);
-  color: #0b101a;
-  border: none;
-  border-radius: 12px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
 
 .controls {
   display: flex;
@@ -418,6 +349,7 @@ select {
   border: 1px solid rgba(0, 208, 168, 0.2);
   opacity: 0;
   transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 
 .product-card:hover {
@@ -462,7 +394,7 @@ select {
 }
 
 .product-card button {
-  background: var(--accent-3);
+  background: var(--accent);
   color: #0b101a;
   border: none;
   border-radius: 12px;
@@ -473,6 +405,42 @@ select {
 
 .benefits {
   padding: 18px 8vw 36px;
+}
+
+.steps {
+  padding: 10px 8vw 24px;
+}
+
+.steps-head h2 {
+  font-family: "Cormorant Garamond", serif;
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.steps-head p {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.step-card {
+  background: rgba(22, 29, 47, 0.95);
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid var(--border);
+  display: grid;
+  gap: 8px;
+}
+
+.step-number {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
 }
 
 .benefits h2 {

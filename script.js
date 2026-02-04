@@ -38,7 +38,6 @@
 ];
 
 const grid = document.getElementById("productGrid");
-const featuredGrid = document.getElementById("featuredGrid");
 const cartCount = document.getElementById("cartCount");
 const cartPanel = document.getElementById("cartPanel");
 const cartItems = document.getElementById("cartItems");
@@ -117,26 +116,7 @@ function renderProducts() {
           <span>${formatPrice(product.price)}</span>
           <span>${formatCategoryLabel(product.category)}</span>
         </div>
-        <button data-id="${product.id}">Añadir al carrito</button>
-      </article>
-    `
-    )
-    .join("");
-}
-
-function renderFeatured() {
-  if (!featuredGrid) return;
-  featuredGrid.innerHTML = products
-    .map(
-      (product) => `
-      <article class="featured-card">
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <div class="featured-meta">
-          <span>${formatPrice(product.price)}</span>
-          <span>${formatCategoryLabel(product.category)}</span>
-        </div>
-        <button data-id="${product.id}">Añadir al carrito</button>
+        <button type="button" data-id="${product.id}">Añadir al carrito</button>
       </article>
     `
     )
@@ -209,7 +189,6 @@ function toggleCart(open) {
 }
 
 renderProducts();
-renderFeatured();
 renderCart();
 updateCartCount();
 
@@ -234,16 +213,6 @@ if (heroAddButton) {
   heroAddButton.addEventListener("click", (event) => {
     const id = Number(event.currentTarget.dataset.id);
     addToCart(id, event.currentTarget);
-    toggleCart(true);
-  });
-}
-
-if (featuredGrid) {
-  featuredGrid.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (!button) return;
-    const id = Number(button.dataset.id);
-    addToCart(id, button);
     toggleCart(true);
   });
 }
