@@ -567,10 +567,20 @@ select {
 }
 
 .icon {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
   cursor: pointer;
-  color: var(--muted);
+  color: var(--text);
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.icon:hover {
+  background: rgba(0, 208, 168, 0.18);
+  border-color: rgba(0, 208, 168, 0.55);
+  color: #fff;
 }
 
 .checkout {
