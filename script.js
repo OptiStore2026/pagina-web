@@ -38,12 +38,14 @@
 ];
 
 const grid = document.getElementById("productGrid");
+const featuredGrid = document.getElementById("featuredGrid");
 const cartCount = document.getElementById("cartCount");
 const cartPanel = document.getElementById("cartPanel");
 const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const overlay = document.getElementById("overlay");
 const heroAddButton = document.querySelector(".hero-card .mini");
+const cartButton = document.getElementById("openCart");
 
 const state = {
   cart: JSON.parse(localStorage.getItem("optistore-cart")) || {},
@@ -70,6 +72,24 @@ function updateCartCount() {
   cartCount.textContent = total;
 }
 
+function pulseCart() {
+  if (!cartButton) return;
+  cartButton.classList.remove("pulse");
+  void cartButton.offsetWidth;
+  cartButton.classList.add("pulse");
+}
+
+function markAdded(button) {
+  if (!button) return;
+  const original = button.textContent;
+  button.textContent = "Añadido";
+  button.classList.add("btn-added");
+  setTimeout(() => {
+    button.textContent = original;
+    button.classList.remove("btn-added");
+  }, 900);
+}
+
 function renderProducts() {
   let filtered = products.filter((product) => {
     const matchCategory = state.category === "all" || product.category === state.category;
@@ -94,6 +114,25 @@ function renderProducts() {
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <div class="product-meta">
+          <span>${formatPrice(product.price)}</span>
+          <span>${formatCategoryLabel(product.category)}</span>
+        </div>
+        <button data-id="${product.id}">Añadir al carrito</button>
+      </article>
+    `
+    )
+    .join("");
+}
+
+function renderFeatured() {
+  if (!featuredGrid) return;
+  featuredGrid.innerHTML = products
+    .map(
+      (product) => `
+      <article class="featured-card">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <div class="featured-meta">
           <span>${formatPrice(product.price)}</span>
           <span>${formatCategoryLabel(product.category)}</span>
         </div>
@@ -137,7 +176,7 @@ function renderCart() {
   updateCartCount();
 }
 
-function addToCart(id) {
+function addToCart(id, button) {
   const product = products.find((item) => item.id === id);
   if (!product) return;
 
@@ -149,6 +188,8 @@ function addToCart(id) {
 
   saveCart();
   renderCart();
+  pulseCart();
+  markAdded(button);
 }
 
 function updateQty(id, delta) {
@@ -168,6 +209,7 @@ function toggleCart(open) {
 }
 
 renderProducts();
+renderFeatured();
 renderCart();
 updateCartCount();
 
@@ -191,7 +233,17 @@ document.getElementById("sortSelect").addEventListener("change", (event) => {
 if (heroAddButton) {
   heroAddButton.addEventListener("click", (event) => {
     const id = Number(event.currentTarget.dataset.id);
-    addToCart(id);
+    addToCart(id, event.currentTarget);
+    toggleCart(true);
+  });
+}
+
+if (featuredGrid) {
+  featuredGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    const id = Number(button.dataset.id);
+    addToCart(id, button);
     toggleCart(true);
   });
 }
@@ -200,7 +252,7 @@ grid.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
   const id = Number(button.dataset.id);
-  addToCart(id);
+  addToCart(id, button);
   toggleCart(true);
 });
 
