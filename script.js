@@ -43,6 +43,7 @@ const cartPanel = document.getElementById("cartPanel");
 const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const overlay = document.getElementById("overlay");
+const heroAddButton = document.querySelector(".hero-card .mini");
 
 const state = {
   cart: JSON.parse(localStorage.getItem("optistore-cart")) || {},
@@ -186,6 +187,14 @@ document.getElementById("sortSelect").addEventListener("change", (event) => {
   state.sort = event.target.value;
   renderProducts();
 });
+
+if (heroAddButton) {
+  heroAddButton.addEventListener("click", (event) => {
+    const id = Number(event.currentTarget.dataset.id);
+    addToCart(id);
+    toggleCart(true);
+  });
+}
 
 grid.addEventListener("click", (event) => {
   const button = event.target.closest("button");
