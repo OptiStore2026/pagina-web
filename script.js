@@ -233,13 +233,6 @@ document.getElementById("closeCart").addEventListener("click", () => toggleCart(
 
 overlay.addEventListener("click", () => toggleCart(false));
 
-const newsletterForm = document.getElementById("newsletterForm");
-newsletterForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  newsletterForm.reset();
-  alert("Gracias. Te avisamos.");
-});
-
 document.getElementById("randomPick").addEventListener("click", () => {
   const random = products[Math.floor(Math.random() * products.length)];
   addToCart(random.id);
