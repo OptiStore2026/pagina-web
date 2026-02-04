@@ -535,6 +535,7 @@ select {
   width: fit-content;
 }
 
+<<<<<<< HEAD
 .checkout-pay {
   display: flex;
   align-items: center;
@@ -551,6 +552,8 @@ select {
   font-weight: 600;
 }
 
+=======
+>>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
 @media (max-width: 780px) {
   .topbar {
     flex-direction: column;

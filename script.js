@@ -239,7 +239,10 @@ overlay.addEventListener("click", () => {
 
 const checkoutPanel = document.getElementById("checkoutPanel");
 const checkoutCode = document.getElementById("checkoutCode");
+<<<<<<< HEAD
 const checkoutTotal = document.getElementById("checkoutTotal");
+=======
+>>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
 const closeCheckout = document.getElementById("closeCheckout");
 
 function toggleCheckout(open) {
@@ -255,9 +258,13 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
     return;
   }
   const code = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+<<<<<<< HEAD
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
   checkoutCode.textContent = code;
   checkoutTotal.textContent = formatPrice(total);
+=======
+  checkoutCode.textContent = code;
+>>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
   toggleCheckout(true);
 });
 
