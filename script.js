@@ -2,37 +2,41 @@
   {
     id: 1,
     name: "Cuenta Steam - Payday 3",
-    price: 27,
+    price: 2,
     category: "steam",
+    image: "opti-hero.png",
     description:
-      "Steam Account con [Payday 3]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
+      "Steam Account con Payday 3. La cuenta puede tener más juegos, saldo o regalos. Formato: login:pass. Fresh, checked y UHQ.",
     badge: "Top"
   },
   {
     id: 2,
     name: "Cuenta Steam - Schedule",
-    price: 22,
+    price: 2,
     category: "steam",
+    image: "opti-hero.png",
     description:
-      "Steam Account con [Schedule]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
+      "Steam Account con Schedule. La cuenta puede tener más juegos, saldo o regalos. Formato: login:pass. Fresh, checked y UHQ.",
     badge: "Nuevo"
   },
   {
     id: 3,
     name: "Cuenta Steam - Minecraft",
-    price: 19,
+    price: 2,
     category: "steam",
+    image: "opti-hero.png",
     description:
-      "Steam Account con [Minecraft]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
+      "Steam Account con Minecraft. La cuenta puede tener más juegos, saldo o regalos. Formato: login:pass. Fresh, checked y UHQ.",
     badge: "Popular"
   },
   {
     id: 4,
-    name: "Cuenta Steam - GTA 6",
-    price: 35,
+    name: "ChatGPT Premium ilimitado",
+    price: 3,
     category: "steam",
+    image: "opti-hero.png",
     description:
-      "Steam Account con [GTA 6]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
+      "Acceso inmediato. Cuenta premium ilimitada. Entrega digital y soporte directo.",
     badge: "Pro"
   }
 ];
@@ -43,8 +47,12 @@ const cartPanel = document.getElementById("cartPanel");
 const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const overlay = document.getElementById("overlay");
-const heroAddButton = document.querySelector(".hero-card .mini");
 const cartButton = document.getElementById("openCart");
+const checkoutPanel = document.getElementById("checkoutPanel");
+const checkoutTotal = document.getElementById("checkoutTotal");
+const checkoutItems = document.getElementById("checkoutItems");
+const copyTicketButton = document.getElementById("copyTicket");
+const closeCheckout = document.getElementById("closeCheckout");
 
 const state = {
   cart: JSON.parse(localStorage.getItem("optistore-cart")) || {},
@@ -58,11 +66,11 @@ function saveCart() {
 }
 
 function formatPrice(value) {
-  return `$${value.toFixed(2)}`;
+  return `€${value.toFixed(2)}`;
 }
 
 function formatCategoryLabel(category) {
-  if (category === "steam") return "Steam";
+  if (category === "steam") return "Cuentas Steam";
   return category;
 }
 
@@ -105,11 +113,19 @@ function renderProducts() {
     filtered = filtered.sort((a, b) => b.price - a.price);
   }
 
+  if (filtered.length === 0) {
+    grid.innerHTML = "<div class=\"empty-state\">No encontramos resultados. Prueba con otro término o categoría.</div>";
+    return;
+  }
+
   grid.innerHTML = filtered
     .map(
       (product) => `
       <article class="product-card">
         <span class="badge">${product.badge}</span>
+        <div class="product-media">
+          <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none';">
+        </div>
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <div class="product-meta">
@@ -128,7 +144,7 @@ function renderCart() {
 
   if (items.length === 0) {
     cartItems.innerHTML = "<p>Tu carrito está vacío. Elige algo.</p>";
-    cartTotal.textContent = "$0.00";
+    cartTotal.textContent = "€0.00";
     updateCartCount();
     return;
   }
@@ -182,10 +198,37 @@ function updateQty(id, delta) {
   renderCart();
 }
 
-function toggleCart(open) {
-  cartPanel.classList.toggle("open", open);
+function setOverlayState() {
+  const open = cartPanel.classList.contains("open") || checkoutPanel.classList.contains("open");
   overlay.classList.toggle("show", open);
+}
+
+function toggleCart(open) {
+  if (open) {
+    checkoutPanel.classList.remove("open");
+    checkoutPanel.setAttribute("aria-hidden", "true");
+  }
+  cartPanel.classList.toggle("open", open);
   cartPanel.setAttribute("aria-hidden", (!open).toString());
+  setOverlayState();
+}
+
+function toggleCheckout(open) {
+  if (open) {
+    cartPanel.classList.remove("open");
+    cartPanel.setAttribute("aria-hidden", "true");
+  }
+  checkoutPanel.classList.toggle("open", open);
+  checkoutPanel.setAttribute("aria-hidden", (!open).toString());
+  setOverlayState();
+}
+
+function closePanels() {
+  cartPanel.classList.remove("open");
+  cartPanel.setAttribute("aria-hidden", "true");
+  checkoutPanel.classList.remove("open");
+  checkoutPanel.setAttribute("aria-hidden", "true");
+  setOverlayState();
 }
 
 renderProducts();
@@ -209,14 +252,6 @@ document.getElementById("sortSelect").addEventListener("change", (event) => {
   renderProducts();
 });
 
-if (heroAddButton) {
-  heroAddButton.addEventListener("click", (event) => {
-    const id = Number(event.currentTarget.dataset.id);
-    addToCart(id, event.currentTarget);
-    toggleCart(true);
-  });
-}
-
 grid.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
@@ -238,25 +273,11 @@ document.getElementById("openCart").addEventListener("click", () => toggleCart(t
 
 document.getElementById("closeCart").addEventListener("click", () => toggleCart(false));
 
-overlay.addEventListener("click", () => {
-  toggleCart(false);
-  toggleCheckout(false);
+overlay.addEventListener("click", closePanels);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closePanels();
 });
-
-const checkoutPanel = document.getElementById("checkoutPanel");
-const checkoutCode = document.getElementById("checkoutCode");
-const checkoutTotal = document.getElementById("checkoutTotal");
-const checkoutItems = document.getElementById("checkoutItems");
-const checkoutOrderId = document.getElementById("checkoutOrderId");
-const checkoutRef = document.getElementById("checkoutRef");
-const copyTicketButton = document.getElementById("copyTicket");
-const closeCheckout = document.getElementById("closeCheckout");
-
-function toggleCheckout(open) {
-  checkoutPanel.classList.toggle("open", open);
-  overlay.classList.toggle("show", open);
-  checkoutPanel.setAttribute("aria-hidden", (!open).toString());
-}
 
 document.getElementById("checkoutBtn").addEventListener("click", () => {
   const items = Object.values(state.cart);
@@ -272,29 +293,13 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
 closeCheckout.addEventListener("click", () => toggleCheckout(false));
 
 function buildOrder(items) {
-  const orderId = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
-  const code = `CODE-${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const ref = makeRef(orderId, total, items);
   const createdAt = new Date().toISOString();
-  return { orderId, code, total, ref, items, createdAt };
-}
-
-function makeRef(orderId, total, items) {
-  const base = `${orderId}|${total}|${items.map((i) => `${i.id}x${i.qty}`).join(",")}`;
-  let hash = 0;
-  for (let i = 0; i < base.length; i += 1) {
-    hash = (hash << 5) - hash + base.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash).toString(36).toUpperCase().slice(0, 6);
+  return { total, items, createdAt };
 }
 
 function renderCheckout(order) {
-  checkoutCode.textContent = order.code;
   checkoutTotal.textContent = formatPrice(order.total);
-  checkoutOrderId.textContent = order.orderId;
-  checkoutRef.textContent = order.ref;
   checkoutItems.innerHTML = order.items
     .map(
       (item) => `
@@ -316,9 +321,6 @@ function buildTicketText() {
     (item) => `- ${item.name} x${item.qty} (${formatPrice(item.price * item.qty)})`
   );
   return [
-    `Pedido: ${order.orderId}`,
-    `Codigo: ${order.code}`,
-    `Ref: ${order.ref}`,
     `Total: ${formatPrice(order.total)}`,
     "Items:",
     ...lines
@@ -333,7 +335,7 @@ if (copyTicketButton) {
       await navigator.clipboard.writeText(text);
       copyTicketButton.textContent = "Copiado";
       setTimeout(() => {
-        copyTicketButton.textContent = "Copiar ticket";
+        copyTicketButton.textContent = "Copiar";
       }, 1000);
     } catch {
       alert("No se pudo copiar.");

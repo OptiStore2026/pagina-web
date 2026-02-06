@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OptiStore - Cuentas Steam Premium</title>
-  <meta name="description" content="Cuentas Steam verificadas con entrega por ticket y soporte directo en Discord." />
+  <title>OptiStore - Cuentas Steam verificadas</title>
+  <meta name="description" content="Cuentas Steam verificadas, entrega digital inmediata y soporte en Discord. Compra rápido y seguro." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="dot"></span>
+      <span class="brand-dot"></span>
       <div>
         <p class="logo">OptiStore</p>
         <p class="tagline">Cuentas Steam verificadas y listas</p>
@@ -22,8 +22,8 @@
     </div>
     <nav class="nav">
       <a href="#productos">Productos</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#beneficios">Ventajas</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Soporte</a>
       <button class="cart-btn" id="openCart">
         <span>Carrito</span>
         <span class="cart-count" id="cartCount">0</span>
@@ -34,45 +34,42 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <p class="pill">Tienda digital</p>
-        <h1>Cuentas Steam listas para jugar con entrega por ticket.</h1>
-        <p class="hero-text">Acceso rápido, formato claro y cuentas verificadas. Compra simple y soporte directo en Discord.</p>
+        <p class="pill">Marketplace digital</p>
+        <h1>Compra cuentas verificadas con soporte real.</h1>
+        <p class="hero-text">Entrega digital inmediata, pagos con PayPal y atención por Discord. Compra con confianza y recibe tu acceso sin vueltas.</p>
         <div class="hero-actions">
-          <a class="primary" href="#productos">Ver productos</a>
-          <a class="ghost" href="#beneficios">Cómo funciona</a>
+          <a class="primary" href="#productos">Explorar productos</a>
+          <a class="ghost" href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Unirse a la comunidad</a>
         </div>
-        <div class="hero-metrics">
-          <div>
-            <p class="metric">Entrega</p>
-            <p>Envío al abrir ticket</p>
-          </div>
-          <div>
-            <p class="metric">Formato</p>
-            <p>`login:pass` listo</p>
-          </div>
-          <div>
-            <p class="metric">Calidad</p>
-            <p>Fresh, checked y UHQ</p>
-          </div>
+        <div class="hero-badges">
+          <span>Entrega inmediata</span>
+          <span>Soporte en vivo</span>
+          <span>PayPal verificado</span>
         </div>
       </div>
-      <div class="hero-art">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-        <div class="orb orb-three"></div>
-        <div class="hero-card">
-          <p>Cuenta Steam Premium</p>
-          <h3>Payday 3 / Minecraft / GTA 6</h3>
-          <span>Entrega inmediata</span>
-          <button class="mini" type="button" data-id="1">Añadir al carrito</button>
-        </div>
+    </section>
+
+    <section class="trust" id="beneficios">
+      <div class="trust-grid">
+        <article class="trust-item">
+          <h3>Entrega digital</h3>
+          <p>Recibes los datos en formato claro y rápido.</p>
+        </article>
+        <article class="trust-item">
+          <h3>Soporte directo</h3>
+          <p>Equipo activo en Discord para resolver dudas.</p>
+        </article>
+        <article class="trust-item">
+          <h3>Pagos verificados</h3>
+          <p>Comprobante y seguimiento en cada compra.</p>
+        </article>
       </div>
     </section>
 
     <section class="controls" id="productos">
       <div>
-        <h2>Explora productos</h2>
-        <p>Encuentra tu cuenta Steam por juego.</p>
+        <h2>Productos</h2>
+        <p>Explora la selección de productos disponibles.</p>
       </div>
       <div class="control-row">
         <div class="search">
@@ -92,52 +89,61 @@
 
     <section class="grid" id="productGrid"></section>
 
-    <section class="steps" id="proceso">
+    <section class="steps" id="tutoriales">
       <div class="steps-head">
-        <h2>Proceso en 3 pasos</h2>
-        <p>Compra rápida y entrega por ticket en Discord.</p>
+        <h2>Tutoriales</h2>
+        <p>Guías rápidas para comprar y recibir soporte.</p>
       </div>
       <div class="steps-grid">
         <article class="step-card">
           <span class="step-number">01</span>
-          <h3>Elige tu cuenta</h3>
-          <p>Selecciona el juego y añádelo al carrito.</p>
+          <h3>Explora productos</h3>
+          <p>Filtra por categoría y elige.</p>
         </article>
         <article class="step-card">
           <span class="step-number">02</span>
-          <h3>Finaliza compra</h3>
-          <p>Genera tu código y realiza el pago indicado.</p>
+          <h3>Compra segura</h3>
+          <p>Genera tu ticket y paga con PayPal.</p>
         </article>
         <article class="step-card">
           <span class="step-number">03</span>
-          <h3>Recibe acceso</h3>
-          <p>Abre un ticket y te enviamos el `login:pass`.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="benefits" id="beneficios">
-      <h2>Comprar aquí es fácil</h2>
-      <div class="benefit-grid">
-        <article>
-          <h3>Entrega por ticket</h3>
-          <p>Al abrir ticket te lo enviaremos con el formato indicado.</p>
-        </article>
-        <article>
-          <h3>Formato claro</h3>
-          <p>`login:pass` sin pasos extra.</p>
-        </article>
-        <article>
           <h3>Soporte directo</h3>
-          <p>Te atendemos en Discord al momento.</p>
+          <p>Abre un ticket en Discord.</p>
         </article>
       </div>
     </section>
 
+    <section class="cta-strip">
+      <div>
+        <h2>¿Listo para comprar?</h2>
+        <p>Únete a la comunidad y recibe soporte inmediato.</p>
+      </div>
+      <a class="primary" href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Hablar con soporte</a>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>© 2026 OptiStore. Servicios digitales.</p>
+    <div class="footer-brand">
+      <p class="logo">OptiStore</p>
+      <p class="tagline">Tu marketplace digital diario.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Shop</h4>
+        <a href="#productos">Todos los productos</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Términos de servicio</a>
+        <a href="#">Política de privacidad</a>
+      </div>
+      <div>
+        <h4>Soporte</h4>
+        <a href="#tutoriales">Tutoriales</a>
+        <a href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Comunidad Discord</a>
+        <a href="mailto:optistore@correo.com">optistore@correo.com</a>
+      </div>
+    </div>
     <a class="footer-discord" href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener" aria-label="Discord">
       <svg viewBox="0 0 245 240" role="img" aria-hidden="true">
         <path d="M104.4 104.4c-5.7 0-10.3 5-10.3 11.1 0 6.1 4.6 11.1 10.3 11.1 5.8 0 10.4-5 10.3-11.1 0-6.1-4.6-11.1-10.3-11.1Zm36.2 0c-5.7 0-10.3 5-10.3 11.1 0 6.1 4.6 11.1 10.3 11.1 5.8 0 10.4-5 10.3-11.1 0-6.1-4.6-11.1-10.3-11.1Z"/>
@@ -155,7 +161,7 @@
     <div class="cart-footer">
       <div class="cart-summary">
         <span>Total</span>
-        <strong id="cartTotal">$0.00</strong>
+        <strong id="cartTotal">€0.00</strong>
       </div>
       <button class="primary" id="checkoutBtn">Finalizar compra</button>
       <p class="cart-note">Entrega digital inmediata</p>
@@ -169,20 +175,15 @@
       <button class="icon" id="closeCheckout">Cerrar</button>
     </div>
     <div class="checkout-body">
-      <p class="checkout-label">Tu código para ticket</p>
-      <div class="checkout-code" id="checkoutCode">OPTI-XXXXXX</div>
-      <div class="checkout-meta">
-        <span class="checkout-id">Pedido: <strong id="checkoutOrderId">OPTI-0000</strong></span>
-        <span class="checkout-ref">Ref: <strong id="checkoutRef">0000</strong></span>
-      </div>
+      <p class="checkout-label">Resumen de compra</p>
       <div class="checkout-items" id="checkoutItems"></div>
       <div class="checkout-pay">
         <strong>PayPal</strong>
-        <span id="checkoutTotal">$0.00</span>
+        <span id="checkoutTotal">€0.00</span>
       </div>
       <a class="checkout-link" href="https://paypal.me/cocolosu" target="_blank" rel="noopener">paypal.me/cocolosu</a>
-      <button class="ghost" id="copyTicket">Copiar ticket</button>
-      <p>Abre un ticket en Discord y pega este código para continuar.</p>
+      <button class="ghost" id="copyTicket">Copiar</button>
+      <p>Abre un ticket en Discord y pega el resumen para continuar.</p>
       <a class="primary" href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Abrir Discord</a>
     </div>
   </aside>
